@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Feliz cumple, hermano · galería de fotos única</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f7f9fc 0%, #eef2f7 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e2a32;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 2.5rem;
+      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+      overflow: hidden;
+    }
+
+    .header-section {
+      background: linear-gradient(135deg, #ffffff 0%, #fefaf5 100%);
+      padding: 2rem 2rem 1.5rem 2rem;
+      border-bottom: 1px solid #ffe6d5;
+      text-align: center;
+    }
+
+    .title-group h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      background: linear-gradient(120deg, #c4451c, #e67e22, #f39c12);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .title-group p {
+      font-size: 1rem;
+      color: #b47c48;
+      border-top: 1px solid #ffe0c4;
+      border-bottom: 1px solid #ffe0c4;
+      display: inline-block;
+      padding: 0.4rem 1.5rem;
+      border-radius: 40px;
+      background: #fff9f2;
+    }
+
+    .stats-card {
+      background: #fff7ef;
+      border-radius: 3rem;
+      padding: 0.3rem 1.2rem;
+      display: inline-block;
+      margin-top: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .stats-number {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #e67e22;
+    }
+
+    .section {
+      padding: 2rem 2rem;
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      color: #d49c6c;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .section-title span {
+      background: #ffeee3;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #c45d2e;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .photo-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f3e5d8;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 28px 36px -18px rgba(0, 0, 0, 0.2);
+      border-color: #f7cdad;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #fdf8f2;
+      overflow: hidden;
+      border-bottom: 3px solid #ffd8b5;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover .image-container img {
+      transform: scale(1.04);
+    }
+
+    .image-container::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      border: 1px solid rgba(255, 215, 180, 0.5);
+      pointer-events: none;
+      border-radius: 12px;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .photo-card:hover .image-container::after {
+      opacity: 1;
+      border-color: #e2a36b;
+    }
+
+    .card-footer {
+      padding: 1rem 1.2rem 1.2rem;
+      background: #ffffff;
+    }
+
+    .photo-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #b47c54;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      border-left: 3px solid #f3bc8c;
+      padding-left: 0.6rem;
+    }
+
+    .comment {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #4b2e1c;
+      background: #fffaf5;
+      padding: 0.7rem 0.9rem;
+      border-radius: 1.2rem;
+      margin-top: 0.6rem;
+      border: 0.5px solid #ffe0ca;
+      font-weight: 450;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .comment-emoji {
+      font-size: 1.3rem;
+    }
+
+    .comment-text {
+      flex: 1;
+    }
+
+    footer {
+      background: #fffbf5;
+      padding: 1.2rem;
+      font-size: 0.7rem;
+      text-align: center;
+      color: #c69c6d;
+      border-top: 1px solid #f7e5d8;
+      font-style: italic;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .section { padding: 1.2rem; }
+      .gallery-grid { gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+      .comment { font-size: 0.8rem; }
+      .title-group h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <div class="header-section">
+    <div class="title-group">
+      <h1>🎂 feliz cumple, hermano 🎂</h1>
+      <p>cada foto tiene un mensaje especial para ti</p>
+    </div>
+    <div class="stats-card">
+      <div class="stats-number">11 recuerdos únicos</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span>✨ para ti, bro ✨</span> MOMENTOS CON AMOR
+    </div>
+    <div class="gallery-grid" id="galleryContainer">
+      <!-- Las 11 imágenes con sus comentarios personalizados -->
+      
+      <!-- 1 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/HL9BfMqG/IMG-20260510-WA0078.jpg" alt="foto 1"></div><div class="card-footer"><div class="photo-name">· complicidad eterna ·</div><div class="comment"><span class="comment-emoji">🤝💛</span><span class="comment-text">Eres mi otra mitad, mi hermano. Gracias por cada locura compartida. ¡Feliz vuelta al sol!</span></div></div></div>
+      
+      <!-- 2 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/wFvffC0J/IMG-20260406-WA0000.jpg" alt="foto 2"></div><div class="card-footer"><div class="photo-name">· luz propia ·</div><div class="comment"><span class="comment-emoji">🌟✨</span><span class="comment-text">Tu luz ilumina hasta los días más grises. Brilla siempre así, hermanito.</span></div></div></div>
+      
+      <!-- 3 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/nNf8XG8H/IMG-20251208-WA0008.jpg" alt="foto 3"></div><div class="card-footer"><div class="photo-name">· fuerza de gigante ·</div><div class="comment"><span class="comment-emoji">🏋️‍♂️💪</span><span class="comment-text">Admiro tu fortaleza y tu buen corazón. Que este año te traiga todo lo que sueñas.</span></div></div></div>
+      
+      <!-- 4 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/4ZHQX43C/IMG-20251208-WA0004.jpg" alt="foto 4"></div><div class="card-footer"><div class="photo-name">· sonrisa infinita ·</div><div class="comment"><span class="comment-emoji">😄🎈</span><span class="comment-text">Tu sonrisa es mi regalo favorito. Nunca dejes de reír, bro. ¡Te quiero!</span></div></div></div>
+      
+      <!-- 5 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/HfkY7HJZ/IMG-20251106-WA0005.jpg" alt="foto 5"></div><div class="card-footer"><div class="photo-name">· magia cotidiana ·</div><div class="comment"><span class="comment-emoji">🪄✨</span><span class="comment-text">Cada día a tu lado tiene un poco de magia. Gracias por existir, hermano.</span></div></div></div>
+      
+      <!-- 6 (nueva, la que faltaba) -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/0yP63DzH/IMG-20251107-WA0096.jpg" alt="foto 6"></div><div class="card-footer"><div class="photo-name">· aventura sin fin ·</div><div class="comment"><span class="comment-emoji">⛰️🌊</span><span class="comment-text">Juntos formamos un equipo imparable. Que sigan las aventuras y las risas.</span></div></div></div>
+      
+      <!-- 7 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/pBzbZNF5/IMG-20250730-WA0050.jpg" alt="foto 7"></div><div class="card-footer"><div class="photo-name">· abrazo de hermano ·</div><div class="comment"><span class="comment-emoji">🤗💖</span><span class="comment-text">Un abrazo enorme para el mejor hermano del mundo. Siempre estaré para ti.</span></div></div></div>
+      
+      <!-- 8 (primera de las fotos "bro" originales) -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/DH6N1q1T/20260513-155436.jpg" alt="foto 8"></div><div class="card-footer"><div class="photo-name">· momento bro ·</div><div class="comment"><span class="comment-emoji">📸🤙</span><span class="comment-text">De esos momentos que quedan grabados en el corazón. ¡Por muchos más!</span></div></div></div>
+      
+      <!-- 9 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/jPH0GVRw/20260513-155517.jpg" alt="foto 9"></div><div class="card-footer"><div class="photo-name">· pura amistad ·</div><div class="comment"><span class="comment-emoji">🍻🎉</span><span class="comment-text">Más que hermanos, cómplices de vida. Celebro cada día a tu lado.</span></div></div></div>
+      
+      <!-- 10 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/bjKF9pZ7/20260513-155620.jpg" alt="foto 10"></div><div class="card-footer"><div class="photo-name">· energía positiva ·</div><div class="comment"><span class="comment-emoji">⚡🌈</span><span class="comment-text">Contagia esa energía tan tuya. Eres único, bro. ¡Feliz cumpleaños!</span></div></div></div>
+      
+      <!-- 11 -->
+      <div class="photo-card"><div class="image-container"><img src="https://i.ibb.co/C52R5M6Q/20260513-155636.jpg" alt="foto 11"></div><div class="card-footer"><div class="photo-name">· recuerdo eterno ·</div><div class="comment"><span class="comment-emoji">📷💭</span><span class="comment-text">Esta foto es un tesoro. Gracias por tantos momentos inolvidables.</span></div></div></div>
+      
+    </div>
+  </div>
+
+  <footer>✨ Hecho con todo el cariño para el mejor hermano del mundo · cada foto tiene un pedacito de mi corazón ✨</footer>
+</div>
+</body>
+</html>
